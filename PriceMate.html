@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Calculator</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator-container {
+            background-color: #1e1e1e;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #ffa500; /* Orange color for heading */
+        }
+
+        input {
+            width: 80%;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border: 1px solid #333;
+            background-color: #333;
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        input::placeholder {
+            color: #888;
+        }
+
+        button {
+            width: 85%;
+            padding: 15px;
+            background-color: #ffa500;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e68900;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #bbb;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .calculator-container {
+                padding: 25px;
+                width: 90%;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            input, button {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h2>Price Calculator</h2>
+        <input type="number" id="priceInput" placeholder="Price per kg" />
+        <input type="number" id="quantityInput" placeholder="Quantity in grams" />
+        <button onclick="calculatePrice()">Calculate Price</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Show an alert when the page loads
+        window.onload = function() {
+            alert('This is only for digital meter, not for weight machine.');
+        };
+
+        // Calculate the price based on the given input
+        function calculatePrice() {
+            const pricePerKg = parseFloat(document.getElementById('priceInput').value);
+            const quantityInGrams = parseFloat(document.getElementById('quantityInput').value);
+
+            if (!pricePerKg || !quantityInGrams) {
+                document.getElementById('result').textContent = 'Please enter valid values for price and quantity.';
+                return;
+            }
+
+            // Convert grams to kg (1 kg = 1000 grams)
+            const quantityInKg = quantityInGrams / 1000;
+
+            // Calculate total price
+            const totalPrice = pricePerKg * quantityInKg;
+
+            // Display the result
+            document.getElementById('result').textContent = `The price for ${quantityInGrams} grams is ₹${totalPrice.toFixed(2)}`;
+        }
+    </script>
+
+</body>
+</html>
